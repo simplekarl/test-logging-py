@@ -2,7 +2,7 @@ import google.cloud.logging
 import logging
 import os
 
-print(os.environ)
+os.environ
 
 #client = google.cloud.logging.Client(context.env["project"])
 #handler = client.get_default_handler()
@@ -16,4 +16,4 @@ logging.critical("This is a critical log.")
 logging.exception("This is an exception log.")
 logging.warning("This is a warning log.")
 
-print('{"severity":"WARNING","message":"Testing warning"}')
+logging.error('{"severity":"WARNING","message":"Testing warning"}')
