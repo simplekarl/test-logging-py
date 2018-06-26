@@ -2,7 +2,7 @@ import google.cloud.logging
 import logging
 import os
 
-os.environ
+print(os.environ)
 
 #client = google.cloud.logging.Client(context.env["project"])
 #handler = client.get_default_handler()
