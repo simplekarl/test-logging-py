@@ -1,7 +1,10 @@
 import google.cloud.logging
 import logging
+import os
 
-client = google.cloud.logging.Client()
+os.environ
+
+client = google.cloud.logging.Client(context.env["project"])
 #handler = client.get_default_handler()
 client.setup_logging(log_level=logging.INFO)
 
