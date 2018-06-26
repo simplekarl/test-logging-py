@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: logging-test 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logging-test
+  template:
+    metadata:
+      labels:
+        app: logging-test
+    spec:
+      containers:
+      - name: certificate-report
+        image: gcr.io/simpleltc-183519/loggingtest
+      restartPolicy: Always 

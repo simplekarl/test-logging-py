@@ -2,7 +2,8 @@ import google.cloud.logging
 import logging
 
 client = google.cloud.logging.Client()
-client.setup_logging()
+#handler = client.get_default_handler()
+client.setup_logging(log_level=logging.INFO)
 
 logging.debug("This is a debug log.")
 logging.info("This is an info log.")
