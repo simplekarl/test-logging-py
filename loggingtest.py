@@ -4,9 +4,9 @@ import os
 
 os.environ
 
-client = google.cloud.logging.Client(context.env["project"])
+#client = google.cloud.logging.Client(context.env["project"])
 #handler = client.get_default_handler()
-client.setup_logging(log_level=logging.INFO)
+#client.setup_logging(log_level=logging.INFO)
 
 logging.debug("This is a debug log.")
 logging.info("This is an info log.")

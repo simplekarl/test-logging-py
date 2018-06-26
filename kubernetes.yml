@@ -15,4 +15,7 @@ spec:
       containers:
       - name: certificate-report
         image: gcr.io/simpleltc-183519/loggingtest
+        env:
+        - name: WEB_CONCURRENCY
+          value: "1"
       restartPolicy: Always 
