@@ -15,3 +15,5 @@ logging.error("This is an error log.")
 logging.critical("This is a critical log.")
 logging.exception("This is an exception log.")
 logging.warning("This is a warning log.")
+
+print('{"severity":"WARNING","message":"Testing warning"}')
