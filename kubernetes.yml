@@ -13,7 +13,7 @@ spec:
         app: logging-test
     spec:
       containers:
-      - name: certificate-report
+      - name: logging-test
         image: gcr.io/simpleltc-183519/loggingtest
         env:
         - name: WEB_CONCURRENCY
