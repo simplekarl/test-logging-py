@@ -41,5 +41,5 @@ class LoggingTest():
   #      childlogtest.run()
 
 if __name__ == '__main__':
-    setup_stackdriver_logging()
+    setup_stackdriver_logging(log_level=0)
     test = LoggingTest()
