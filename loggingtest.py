@@ -12,9 +12,10 @@ class StackdriverJSONFormatter(jsonlogger.JsonFormatter):
             #log_record['timestamp'] = now
             log_record['time'] = record.created
         if log_record.get('level'):
-            log_record['level'] = log_record['level'].upper()
+            log_record['severity'] = log_record['level'].upper()
+            del log_record['level']
         else:
-            log_record['level'] = record.levelname
+            log_record['severity'] = record.levelname
 
 def setup_stackdriver_logging(log_level=logging.INFO):
     formatter = StackdriverJSONFormatter('(time) (level) (name) (message)')
