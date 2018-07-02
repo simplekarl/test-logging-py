@@ -1,24 +1,32 @@
 import logging
 import sys
 from pythonjsonlogger import jsonlogger
+from datetime import datetime as dt
 #import childlogtest
 
 class StackdriverJSONFormatter(jsonlogger.JsonFormatter):
     def add_fields(self, log_record, record, message_dict):
         super(StackdriverJSONFormatter, self).add_fields(log_record, record, message_dict)
-        if not log_record.get('time'):
-            # this doesn't use record.created, so it is slightly off
-            #now = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-            #log_record['timestamp'] = now
-            log_record['time'] = record.created
+        if not log_record.get('timestamp'):
+            if record.created:
+                ts = dt.fromtimestamp(record.created)
+            else:
+                ts = dt.utcnow()
+            ts = ts.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+            log_record['timestamp'] = ts
+
         if log_record.get('level'):
             log_record['severity'] = log_record['level'].upper()
         else:
             log_record['severity'] = record.levelname
-        del log_record['level']
+            log_record['level'] = record.levelname
 
-def setup_stackdriver_logging(log_level=logging.INFO):
-    formatter = StackdriverJSONFormatter('(time) (level) (name) (message)')
+        log_record['type'] = "python"
+        log_record['app'] = self.app
+
+def setup_stackdriver_logging(log_level=logging.INFO, app=None):
+    formatter = StackdriverJSONFormatter('(timestamp) (level) (name) (message)')
+    formatter.app = app
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(formatter)
     root_logger = logging.getLogger()

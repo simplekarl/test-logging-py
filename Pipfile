@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 google-cloud-logging = "==1.6.0"
+python-json-logger = "*"
+py-sltc = "*"
 
 [dev-packages]
 
