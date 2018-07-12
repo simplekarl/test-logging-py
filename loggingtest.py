@@ -4,6 +4,11 @@ from pythonjsonlogger import jsonlogger
 from datetime import datetime as dt
 #import childlogtest
 
+import logging
+import sys
+from pythonjsonlogger import jsonlogger
+from datetime import datetime as dt
+
 class StackdriverJSONFormatter(jsonlogger.JsonFormatter):
     def add_fields(self, log_record, record, message_dict):
         super(StackdriverJSONFormatter, self).add_fields(log_record, record, message_dict)
@@ -24,9 +29,9 @@ class StackdriverJSONFormatter(jsonlogger.JsonFormatter):
         log_record['type'] = "python"
         log_record['app'] = self.app
 
-def setup_stackdriver_logging(log_level=logging.INFO, app=None):
+def setup_stackdriver_logging(app_name, log_level=logging.INFO):
     formatter = StackdriverJSONFormatter('(timestamp) (level) (name) (message)')
-    formatter.app = app
+    formatter.app = app_name
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(formatter)
     root_logger = logging.getLogger()
@@ -49,5 +54,5 @@ class LoggingTest():
   #      childlogtest.run()
 
 if __name__ == '__main__':
-    setup_stackdriver_logging(log_level=0)
+    setup_stackdriver_logging(log_level=0, app_name="Test")
     test = LoggingTest()
